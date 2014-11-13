@@ -3,7 +3,7 @@ ROS - DisCODe Component Library
 
 Description
 -----------
-
+zmiana zmiana
 Fill this section with description of this library.
 
 Dependencies
