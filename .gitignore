@@ -1,6 +1,9 @@
-build
-dist
-.cproject
-.project
+/build
+/build*
+/dist
 .settings
+.project
+.cproject
+/data/*/
 *~
+/data
