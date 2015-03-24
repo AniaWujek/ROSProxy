@@ -18,7 +18,7 @@ namespace Float32MultiArrayProxy {
 Float32MultiArrayProxy::Float32MultiArrayProxy(const std::string & name) :
 		Base::Component(name) ,
 		ros_topic_name("ros.topic_name", std::string("float32MultiArray")),
-		ros_namespace("ros.namespace", std::string("discode")) {
+		ros_namespace("ros.namespace", std::string("discode_irp6_drawing")) {
 		registerProperty(ros_topic_name);
 		registerProperty(ros_namespace);
 
@@ -63,8 +63,9 @@ bool Float32MultiArrayProxy::onStart() {
 }
 int i = 0;
 void Float32MultiArrayProxy::onNewData() {
-    std::cout<<"rooos proxyyy";
+
     if(!in_data.empty()){
+
     std::vector<float> data = in_data.read();
 
 	std_msgs::Float32MultiArray msg;
