@@ -17,7 +17,15 @@
 		<Subtask name="Processing">
 			<Executor name="Exec1" period="0.1">
 				<Component name="Source" type="ROSProxy:CameraSubscriber" priority="1" bump="0">
-					<param name="image_topic">/camera/image_color</param>
+					<param name="image_topic">/camera_t/image_color</param>
+				</Component>
+				<Component name="CameraInfo" type="CvCoreTypes:CameraInfoProvider" priority="2">
+					<param name="width">1296</param>
+					<param name="height">1032</param>
+					<param name="camera_matrix">1299.351750 0.000000 650.629886 ; 0.000000 1292.515181 532.876867 ; 0.000000 0.000000 1.000000</param>
+					<param name="dist_coeffs">-0.420177 0.261718 0.002704 0.000718 0.000000</param>
+				</Component>
+				<Component name="Undistort" type="CvBasic:CvUndistort" priority="3">
 				</Component>
 			</Executor>
 		</Subtask>
@@ -39,8 +47,14 @@
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Source.out_img">
-			<sink>Window.in_img</sink>
+			<sink>Undistort.in_img</sink>
 		</Source>
+		<Source name="CameraInfo.out_camera_info">
+        	<sink>Undistort.in_camera_info</sink>
+        </Source>
+        <Source name="Undistort.out_img">
+           	<sink>Window.in_img</sink>
+        </Source>
 	</DataStreams>
 </Task>
 

@@ -1,6 +1,6 @@
 /*!
  * \file
- * \brief 
+ * \brief
  * \author Maciej Stefanczyk
  */
 
@@ -28,7 +28,7 @@ namespace CameraSubscriber {
  * \class CameraSubscriber
  * \brief CameraSubscriber processor class.
  *
- * 
+ *
  */
 class CameraSubscriber: public Base::Component {
 public:
@@ -44,7 +44,7 @@ public:
 
 	/*!
 	 * Prepare components interface (register streams and handlers).
-	 * At this point, all properties are already initialized and loaded to 
+	 * At this point, all properties are already initialized and loaded to
 	 * values set in config file.
 	 */
 	void prepareInterface();
@@ -84,16 +84,18 @@ protected:
 	Base::Property<std::string> image_topic;
 	Base::Property<std::string> camera_info_topic;
 
-	
+
 	// Handlers
 	void spinOnce();
-	
-	
+
+
 	ros::NodeHandle * nh;
 	image_transport::ImageTransport * it;
 	image_transport::CameraSubscriber sub;
 
 	void callback(const sensor_msgs::ImageConstPtr& img, const sensor_msgs::CameraInfoConstPtr& ci);
+
+	bool own_spin;
 };
 
 } //: namespace CameraSubscriber

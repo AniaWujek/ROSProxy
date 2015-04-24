@@ -12,6 +12,8 @@
 
 #include <boost/bind.hpp>
 
+#include "Common/Timer.hpp"
+
 namespace Processors {
 namespace Float32MultiArrayProxy {
 
@@ -64,6 +66,8 @@ bool Float32MultiArrayProxy::onStart() {
 int i = 0;
 void Float32MultiArrayProxy::onNewData() {
 
+    Common::Timer t;
+    t.restart();
     if(!in_data.empty()){
 
     std::vector<float> data = in_data.read();
@@ -77,6 +81,7 @@ void Float32MultiArrayProxy::onNewData() {
 	pub.publish(msg);
 	ros::spinOnce();
     }
+    CLOG(LNOTICE) << "Elapsed: " << t.elapsed();
 
 
 }
