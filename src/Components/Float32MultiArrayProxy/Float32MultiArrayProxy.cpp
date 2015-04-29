@@ -72,6 +72,8 @@ void Float32MultiArrayProxy::onNewData() {
 
     std::vector<float> data = in_data.read();
 
+    CLOG(LTRACE) << "\n\n CONTOURS SIZE: "<<data[0]<<"\n\n";
+
 	std_msgs::Float32MultiArray msg;
 
 	for(int i = 0; i < data.size(); ++i) {
