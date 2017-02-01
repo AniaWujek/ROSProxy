@@ -6,5 +6,4 @@ ADD_COMPONENT(FloatProxy)
 
 ADD_COMPONENT(Float32MultiArrayProxy)
 
-ADD_COMPONENT(CameraSubscriber)
 
