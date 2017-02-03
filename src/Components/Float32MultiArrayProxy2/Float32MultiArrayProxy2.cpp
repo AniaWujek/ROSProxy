@@ -63,26 +63,51 @@ bool Float32MultiArrayProxy2::onStop() {
 bool Float32MultiArrayProxy2::onStart() {
 	return true;
 }
-int i = 0;
+
+bool checkData(std::vector<std::vector<float> > &data) {
+	if(data.size()>0) {
+		int s = data[0].size();
+		for(int i=1; i<data.size(); ++i) {
+			if(data[i].size()!=s) return false;
+		}
+		return true;	
+	}
+	return false;
+}
+
 void Float32MultiArrayProxy2::onNewData() {
 
     Common::Timer t;
     t.restart();
     if(!in_data.empty()){
 
-    std::vector<float> data = in_data.read();
+	    std::vector<std::vector<float> > data = in_data.read();
+	    if(checkData(data)) {
+	    	std_msgs::Float32MultiArray msg;
+	    	msg.layout.dim.push_back(std_msgs::MultiArrayDimension());
+	    	msg.layout.dim.push_back(std_msgs::MultiArrayDimension());
+	    	msg.layout.dim[0].size = data.size();
+	    	msg.layout.dim[0].stride = data.size()*data[0].size();
+	    	msg.layout.dim[0].label = "rows";
+	    	msg.layout.dim[1].size = data[0].size();
+	    	msg.layout.dim[1].stride = data[0].size();
+	    	msg.layout.dim[1].label = "cols";
 
-    CLOG(LTRACE) << "\n\n CONTOURS SIZE: "<<data[0]<<"\n\n";
+	    	for(int i=0; i<data.size(); ++i) {
+	    		for(int j=0; j<data[i].size(); ++j) {
+	    			msg.data.push_back(data[i][j]);
+	    		}
+	    	}	    	
 
-	std_msgs::Float32MultiArray msg;
-	std_msgs::MultiArrayDimension dim[2];
+			/*for(int i = 0; i < data.size(); ++i) {
+		        msg.data.push_back(data[i]);
+			}*/
 
-	for(int i = 0; i < data.size(); ++i) {
-        msg.data.push_back(data[i]);
-	}
+			pub.publish(msg);
+			ros::spinOnce();
+		}
 
-	pub.publish(msg);
-	ros::spinOnce();
+		
     }
     CLOG(LNOTICE) << "Elapsed: " << t.elapsed();
 

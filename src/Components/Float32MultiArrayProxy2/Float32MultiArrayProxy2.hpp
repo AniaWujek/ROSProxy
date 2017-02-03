@@ -69,7 +69,7 @@ protected:
 
 // Input data streams
 
-		Base::DataStreamIn< std::vector<float> > in_data;
+		Base::DataStreamIn< std::vector<std::vector<float> > > in_data;
 
 // Output data streams
 
