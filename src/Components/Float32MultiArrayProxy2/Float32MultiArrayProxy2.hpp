@@ -4,8 +4,8 @@
  * \author Maciej,,,
  */
 
-#ifndef Float32MultiArrayProxy_HPP_
-#define Float32MultiArrayProxy_HPP_
+#ifndef Float32MultiArrayProxy2_HPP_
+#define Float32MultiArrayProxy2_HPP_
 
 #include "Component_Aux.hpp"
 #include "Component.hpp"
@@ -17,25 +17,25 @@
 #include "std_msgs/Float32MultiArray.h"
 
 namespace Processors {
-namespace Float32MultiArrayProxy {
+namespace Float32MultiArrayProxy2 {
 
 /*!
- * \class Float32MultiArrayProxy
- * \brief Float32MultiArrayProxy processor class.
+ * \class Float32MultiArrayProxy2
+ * \brief Float32MultiArrayProxy2 processor class.
  *
- * Float32MultiArrayProxy processor.
+ * Float32MultiArrayProxy2 processor.
  */
-class Float32MultiArrayProxy: public Base::Component {
+class Float32MultiArrayProxy2: public Base::Component {
 public:
 	/*!
 	 * Constructor.
 	 */
-	Float32MultiArrayProxy(const std::string & name = "Float32MultiArrayProxy");
+	Float32MultiArrayProxy2(const std::string & name = "Float32MultiArrayProxy2");
 
 	/*!
 	 * Destructor
 	 */
-	virtual ~Float32MultiArrayProxy();
+	virtual ~Float32MultiArrayProxy2();
 
 	/*!
 	 * Prepare components interface (register streams and handlers).
@@ -86,15 +86,15 @@ protected:
 	//ros::Subscriber sub;
 	ros::NodeHandle * nh;
 
-	//void callback(const std_msgs::Float32MultiArrayConstPtr& msg);
+	void callback(const std_msgs::Float32MultiArrayConstPtr& msg);
 };
 
-} //: namespace Float32MultiArrayProxy
+} //: namespace Float32MultiArrayProxy2
 } //: namespace Processors
 
 /*
  * Register processor component.
  */
-REGISTER_COMPONENT("Float32MultiArrayProxy", Processors::Float32MultiArrayProxy::Float32MultiArrayProxy)
+REGISTER_COMPONENT("Float32MultiArrayProxy2", Processors::Float32MultiArrayProxy2::Float32MultiArrayProxy2)
 
-#endif /* Float32MultiArrayProxy_HPP_ */
+#endif /* Float32MultiArrayProxy2_HPP_ */
