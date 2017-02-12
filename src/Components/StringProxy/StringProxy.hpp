@@ -4,8 +4,8 @@
  * \author Maciej,,,
  */
 
-#ifndef Float32MultiArrayProxy2_HPP_
-#define Float32MultiArrayProxy2_HPP_
+#ifndef StringProxy_HPP_
+#define StringProxy_HPP_
 
 #include "Component_Aux.hpp"
 #include "Component.hpp"
@@ -14,29 +14,28 @@
 #include "EventHandler2.hpp"
 
 #include "ros/ros.h"
-#include "std_msgs/Float32MultiArray.h"
-
+#include "std_msgs/String.h"
 
 namespace Processors {
-namespace Float32MultiArrayProxy2 {
+namespace StringProxy {
 
 /*!
- * \class Float32MultiArrayProxy2
- * \brief Float32MultiArrayProxy2 processor class.
+ * \class StringProxy
+ * \brief StringProxy processor class.
  *
- * Float32MultiArrayProxy2 processor.
+ * StringProxy processor.
  */
-class Float32MultiArrayProxy2: public Base::Component {
+class StringProxy: public Base::Component {
 public:
 	/*!
 	 * Constructor.
 	 */
-	Float32MultiArrayProxy2(const std::string & name = "Float32MultiArrayProxy2");
+	StringProxy(const std::string & name = "StringProxy");
 
 	/*!
 	 * Destructor
 	 */
-	virtual ~Float32MultiArrayProxy2();
+	virtual ~StringProxy();
 
 	/*!
 	 * Prepare components interface (register streams and handlers).
@@ -70,14 +69,12 @@ protected:
 
 // Input data streams
 
-		Base::DataStreamIn< std::vector<std::vector<float> > > in_data;
-
+		Base::DataStreamIn< std::string > in_data;
 
 // Output data streams
 
 	// Handlers
 	Base::EventHandler2 h_onNewData;
-
 		Base::Property<std::string> ros_topic_name;
 		Base::Property<std::string> ros_namespace;
 
@@ -85,20 +82,19 @@ protected:
 	// Handlers
 	void onNewData();
 
-
 	ros::Publisher pub;
 	//ros::Subscriber sub;
 	ros::NodeHandle * nh;
 
-	void callback(const std_msgs::Float32MultiArrayConstPtr& msg);
+	void callback(const std_msgs::StringConstPtr& msg);
 };
 
-} //: namespace Float32MultiArrayProxy2
+} //: namespace StringProxy
 } //: namespace Processors
 
 /*
  * Register processor component.
  */
-REGISTER_COMPONENT("Float32MultiArrayProxy2", Processors::Float32MultiArrayProxy2::Float32MultiArrayProxy2)
+REGISTER_COMPONENT("StringProxy", Processors::StringProxy::StringProxy)
 
-#endif /* Float32MultiArrayProxy2_HPP_ */
+#endif /* StringProxy_HPP_ */

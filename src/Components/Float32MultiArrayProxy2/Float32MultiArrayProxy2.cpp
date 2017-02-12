@@ -37,6 +37,7 @@ void Float32MultiArrayProxy2::prepareInterface() {
 	h_onNewData.setup(boost::bind(&Float32MultiArrayProxy2::onNewData, this));
 	registerHandler("onNewData", &h_onNewData);
 	addDependency("onNewData", &in_data);
+
 	//addDependency("onNewData", NULL);
 
 }
@@ -113,6 +114,7 @@ void Float32MultiArrayProxy2::onNewData() {
 
 
 }
+
 
 void Float32MultiArrayProxy2::callback(const std_msgs::Float32MultiArrayConstPtr& msg) {
 	CLOG(LNOTICE) << "Received from ROS: " << msg->data.size();
