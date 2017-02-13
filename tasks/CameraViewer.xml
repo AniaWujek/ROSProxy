@@ -35,6 +35,7 @@
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
 					<param name="count">1</param>
 					<param name="title">Camera View</param>
+					<param name="save.directory">/tmp</param>
 				</Component>
 			</Executor>
 		</Subtask>

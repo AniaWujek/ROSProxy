@@ -8,3 +8,5 @@ ADD_COMPONENT(Float32MultiArrayProxy)
 ADD_COMPONENT(Float32MultiArrayProxy2)
 
 Add_COMPONENT(StringProxy)
+
+ADD_COMPONENT(CameraSubscriber)

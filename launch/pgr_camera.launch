@@ -21,7 +21,7 @@
       <param name="auto_exposure" value="false" />
       <param name="auto_shutter" value="false" />
       <param name="auto_gain" value="false" />
-      <param name="shutter_speed" value="0.01" />
+      <param name="shutter_speed" value="0.1" />
       <param name="gain" value="0.0" />
       
       <param name="auto_packet_size" value="false" />
